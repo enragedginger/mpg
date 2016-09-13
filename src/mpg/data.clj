@@ -48,7 +48,8 @@
         "json"   (.setObject stmt idx (u/pg-json v))
         "jsonb"  (.setObject stmt idx (u/pg-json v))
         "citext" (.setObject stmt idx (str v))
-        "hstore" (.setObject stmt idx (java.util.HashMap. ^clojure.lang.PersistentHashMap v))))
+        "hstore" (.setObject stmt idx (java.util.HashMap. ^clojure.lang.PersistentHashMap v))
+        (.setObject stmt idx (u/pg-json v))))
     IPersistentVector
     (set-parameter [v ^java.sql.PreparedStatement stmt ^long idx]
       (let [conn      (.getConnection stmt)
